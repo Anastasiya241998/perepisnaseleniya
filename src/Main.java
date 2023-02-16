@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class main{
+class main {
     public static void main(String[] args) {
         List<String> names = Arrays.asList("Jack", "Connor", "Harry", "George", "Samuel", "John");
         List<String> families = Arrays.asList("Evans", "Young", "Harris", "Wilson", "Davies", "Adamson", "Brown");
@@ -29,30 +29,28 @@ class main{
         }
 
 
-
-
         System.out.println("Count of minor persons: ");
-    Stream<Person> minorPersonStream = persons.stream();
+        Stream<Person> minorPersonStream = persons.stream();
         System.out.println(minorPersonStream.filter(person -> person.getAge() < 18)
-            .count());
+                .count());
 
         System.out.println("List of conscripts: ");
-    Stream<Person> conscriptsPersonStream = persons.stream();
+        Stream<Person> conscriptsPersonStream = persons.stream();
         System.out.println(conscriptsPersonStream.filter(person -> person.getAge() >= 18)
-            .filter(person -> person.getAge() < 27)
-            .map(person -> person.getFamily())
-            .collect(Collectors.toList()));
+                .filter(person -> person.getAge() < 27)
+                .map(person -> person.getFamily())
+                .collect(Collectors.toList()));
 
         System.out.println("List of workers: ");
-    Stream<Person> workersStream = persons.stream();
+        Stream<Person> workersStream = persons.stream();
         System.out.println(workersStream
                 .filter(
-    person -> person.getAge() >= 18 &&
-            ((person.getSex() == Sex.MAN && person.getAge() < 65) ||
-            (person.getSex() == Sex.WOMAN && person.getAge() < 60)))
-            .filter(person -> person.getEducation() == Education.HIGHER)
-            .sorted(personComparator)
-                        .map(person -> person.getFamily() + " " + person.getName())
-            .collect(Collectors.toList()));
-}
+                        person -> person.getAge() >= 18 &&
+                                ((person.getSex() == Sex.MAN && person.getAge() < 65) ||
+                                        (person.getSex() == Sex.WOMAN && person.getAge() < 60)))
+                .filter(person -> person.getEducation() == Education.HIGHER)
+                .sorted(personComparator)
+                .map(person -> person.getFamily() + " " + person.getName())
+                .collect(Collectors.toList()));
+    }
 }
